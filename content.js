@@ -74,3 +74,23 @@ const SITE_CONTENT = {
 };
 
 window.SITE_CONTENT = SITE_CONTENT;
+
+// Make the supplied Visionering logo stand out on the colorful site.
+document.addEventListener('DOMContentLoaded', () => {
+  const style = document.createElement('style');
+  style.textContent = `
+    .brand img,
+    .hero-card img {
+      mix-blend-mode: screen !important;
+      background: transparent !important;
+      filter: brightness(1.12) saturate(1.12) drop-shadow(0 0 22px rgba(37,217,255,.28)) !important;
+    }
+    .hero-card {
+      background: linear-gradient(135deg, rgba(25,61,115,.96), rgba(55,25,105,.94), rgba(15,90,120,.92)) !important;
+    }
+    .hero-card img {
+      padding: 8px;
+    }
+  `;
+  document.head.appendChild(style);
+});
