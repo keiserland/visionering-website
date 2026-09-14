@@ -1,0 +1,19 @@
+VISIONERING EDITABLE WEBSITE
+
+Edit your site content in content.js.
+
+1. Open content.js in Notepad or another text editor.
+2. Change the company info, services, email, and your 3 bundles.
+3. Save content.js.
+4. Refresh index.html in Chrome.
+
+Your 3 bundles are already built into the website. You only need to replace:
+- title
+- price
+- description
+- items
+- featured: true/false
+
+Do not delete commas, quotation marks, or brackets.
+
+The current email is hello@visionering.com. Replace it with your real business email before publishing.
