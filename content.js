@@ -1,6 +1,6 @@
 /*
 VISIONERING — EDIT HERE
-Change the business information below. Do not change index.html unless you want to change the design.
+Change the business information and colors below. Do not change index.html unless you want to change the design.
 */
 
 const SITE_CONTENT = {
@@ -11,6 +11,18 @@ const SITE_CONTENT = {
   heroHighlight: "impossible to ignore.",
   heroText: "Visionering helps businesses turn ideas into attention, attention into customers, and customers into growth.",
   email: "hello@visionering.com",
+
+  // Main website colors — easy to change
+  colors: {
+    background: "#07030f",
+    panel: "#12091f",
+    text: "#ffffff",
+    muted: "#b8abc9",
+    primary: "#8b5cf6",
+    secondary: "#22d3ee",
+    accent: "#ec4899",
+    line: "rgba(255,255,255,.12)"
+  },
 
   services: [
     { icon: "✦", title: "Brand Strategy", text: "Build a clear identity and message that people remember." },
