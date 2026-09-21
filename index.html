@@ -55,6 +55,8 @@ section{padding:92px 0}.section-head{display:flex;justify-content:space-between;
 .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:19px}.card{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:23px;padding:25px;background:linear-gradient(150deg,rgba(25,53,95,.72),rgba(10,20,42,.76));box-shadow:0 18px 50px rgba(0,0,0,.2);transition:.25s}
 .card:before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(37,217,255,.07),transparent 38%,rgba(154,92,255,.07));pointer-events:none}.card:hover{transform:translateY(-6px);border-color:rgba(37,217,255,.45);box-shadow:0 22px 60px rgba(37,125,246,.18)}
 .icon{position:relative;font-size:32px;margin-bottom:16px;filter:drop-shadow(0 0 12px rgba(37,217,255,.55))}.card h3,.card p,.card ul,.card .price,.card .muted,.card .tag,.card a{position:relative}.card h3{font-size:21px;margin-bottom:8px}.card p{color:var(--muted)}
+.service-card-link{display:block;min-height:190px;color:inherit;cursor:pointer}
+.service-card-link .service-link{display:block;margin-top:16px;color:#69eaff;font-weight:900;font-size:14px;position:relative}
 .bundle{min-height:330px}.bundle.featured{border-color:rgba(154,92,255,.68);box-shadow:0 20px 65px rgba(154,92,255,.18)}.tag{position:absolute;right:17px;top:17px;color:#e5d7ff;font-size:11px;font-weight:900;letter-spacing:.1em}.price{font-size:38px;font-weight:950;margin:16px 0;background:linear-gradient(90deg,#fff,#6eeaff,#c29aff);-webkit-background-clip:text;background-clip:text;color:transparent}.bundle ul{list-style:none;display:grid;gap:9px;margin:18px 0 27px;color:#d5dfec}.bundle li:before{content:"✓";color:#5ce9ff;font-weight:900;margin-right:9px}
 .about{display:grid;grid-template-columns:1fr 1fr;gap:22px}.about .card{padding:34px;min-height:320px}.process{position:relative}.step{display:grid;grid-template-columns:52px 1fr;gap:17px;padding:17px 0;border-bottom:1px solid var(--line)}.num{width:43px;height:43px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(135deg,rgba(37,217,255,.17),rgba(154,92,255,.2));color:#d4f9ff;font-weight:950;box-shadow:0 8px 24px rgba(37,125,246,.14)}
 .cta{position:relative;overflow:hidden;padding:60px;border-radius:30px;border:1px solid rgba(37,217,255,.34);background:linear-gradient(135deg,rgba(22,51,91,.82),rgba(46,28,91,.72));box-shadow:0 25px 90px rgba(0,0,0,.28)}.cta:before{content:"";position:absolute;width:360px;height:360px;border-radius:50%;right:-140px;top:-190px;background:radial-gradient(circle,rgba(37,217,255,.27),transparent 68%)}
@@ -80,7 +82,14 @@ document.addEventListener('DOMContentLoaded',()=>{
  set('navBrand',c.company);set('footerBrand',c.company);set('tagline',c.tagline);set('category',c.category);set('heroText',c.heroText);set('aboutText',c.about||'');set('contactTitle',c.contactTitle||'Ready to make some noise?');set('contactText',c.contactText||'');
  const hero=document.getElementById('heroHeading'); if(hero) hero.innerHTML=`${c.heroTitle||'Make your brand'} <span class="gradient">${c.heroHighlight||'impossible to ignore.'}</span>`;
  const mail=`mailto:${c.email||''}`;['heroEmail','contactEmail'].forEach(id=>{const e=document.getElementById(id);if(e)e.href=mail});
- const s=document.getElementById('servicesGrid');(c.services||[]).forEach(x=>{const d=document.createElement('article');d.className='card service-card';const page=x.page||'#';d.innerHTML=`<a href="${page}" aria-label="Open ${x.title||'service'} page"><div class="icon">${x.icon||'✦'}</div><h3>${x.title||''}</h3><p>${x.text||''}</p><span class="service-link">Learn more →</span></a>`;s.appendChild(d)});
+ const s=document.getElementById('servicesGrid');(c.services||[]).forEach(x=>{
+   const d=document.createElement('a');
+   d.className='card service-card service-card-link';
+   d.href=x.page||'#';
+   d.setAttribute('aria-label',`Open ${x.title||'service'} page`);
+   d.innerHTML=`<div class="icon">${x.icon||'✦'}</div><h3>${x.title||''}</h3><p>${x.text||''}</p><span class="service-link">Learn more →</span>`;
+   s.appendChild(d);
+ });
  const b=document.getElementById('bundleGrid');(c.bundles||[]).forEach(x=>{const d=document.createElement('article');d.className=`card bundle${x.featured?' featured':''}`;d.innerHTML=`${x.featured?'<div class="tag">MOST POPULAR</div>':''}<div class="muted">${x.name||''}</div><h3>${x.title||''}</h3><div class="price">${x.price||''}</div><p class="muted">${x.description||''}</p><ul>${(x.items||[]).map(i=>`<li>${i}</li>`).join('')}</ul><a class="btn primary" href="#contact">Choose Bundle</a>`;b.appendChild(d)});
  const p=document.getElementById('processGrid');(c.process||[]).forEach((x,i)=>{const d=document.createElement('div');d.className='step';d.innerHTML=`<div class="num">0${i+1}</div><div><h3>${x.title||''}</h3><p class="muted">${x.text||''}</p></div>`;p.appendChild(d)});
 });
