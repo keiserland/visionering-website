@@ -25,12 +25,12 @@ const SITE_CONTENT = {
   },
 
   services: [
-    { icon: "✦", title: "Brand Strategy", text: "Build a clear identity and message that people remember." },
-    { icon: "◉", title: "Social Media", text: "Create content that gets attention and keeps your brand active." },
-    { icon: "↗", title: "Advertising", text: "Turn strong creative into campaigns designed to drive action." },
-    { icon: "⌁", title: "Content Creation", text: "Photos, graphics, video, and copy made around your brand." },
-    { icon: "◎", title: "Web Design", text: "Modern websites that look sharp and make it easy to take the next step." },
-    { icon: "⚡", title: "Growth Ideas", text: "Find practical ways to get more attention, leads, and customers." }
+    { icon: "✦", title: "Brand Strategy", text: "Build a clear identity and message that people remember.", page: "brand-strategy.html" },
+    { icon: "◉", title: "Social Media", text: "Create content that gets attention and keeps your brand active.", page: "social-media.html" },
+    { icon: "↗", title: "Advertising", text: "Turn strong creative into campaigns designed to drive action.", page: "advertising.html" },
+    { icon: "⌁", title: "Content Creation", text: "Photos, graphics, video, and copy made around your brand.", page: "content-creation.html" },
+    { icon: "◎", title: "Web Design", text: "Modern websites that look sharp and make it easy to take the next step.", page: "web-design.html" },
+    { icon: "⚡", title: "Growth Ideas", text: "Find practical ways to get more attention, leads, and customers.", page: "growth-ideas.html" }
   ],
 
   bundles: [
