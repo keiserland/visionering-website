@@ -10,7 +10,7 @@ const SITE_CONTENT = {
   heroTitle: "Make your brand",
   heroHighlight: "impossible to ignore.",
   heroText: "Visionering helps businesses turn ideas into attention, attention into customers, and customers into growth.",
-  email: "hello@visionering.com",
+  email: "visionearingmarketing@gmail.com",
 
   // Main website colors — easy to change
   colors: {
