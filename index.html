@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Visionering | Marketing & Advertising</title>
 <link rel="icon" href="logo.jpg?v=999">
-<script src="content.js" defer></script>
+<script src="content.js?v=1001" defer></script>
 <style>
 :root{
   --bg:#07111f;
@@ -68,7 +68,14 @@ footer{padding:34px 0 55px;color:#9eafc2;border-top:1px solid var(--line)}
 <nav class="nav"><div class="container nav-inner"><a class="brand" href="#top"><img src="logo.jpg?v=999" alt="Visionering logo"><span id="navBrand">VISIONERING</span></a><div class="links"><a href="#services">Services</a><a href="#bundles">Bundles</a><a href="#about">About</a><a href="#contact">Contact</a></div></div></nav>
 <main id="top">
 <section class="hero"><div class="container hero-grid"><div><div class="eyebrow" id="category">MARKETING & ADVERTISING</div><h1 id="heroHeading">Make your brand <span class="gradient">impossible to ignore.</span></h1><p id="heroText">Visionering helps businesses turn ideas into attention, attention into customers, and customers into growth.</p><div class="actions"><a class="btn primary" href="#bundles">View Bundles</a><a class="btn ghost" id="heroEmail" href="#contact">Let's Talk</a></div></div><div class="hero-card"><img src="logo.jpg?v=999" alt="Visionering"><div class="stat"><div><strong>03</strong><div class="muted">Flexible bundles</div></div><div><strong>01</strong><div class="muted">Goal: growth</div></div></div></div></div></section>
-<section id="services"><div class="container"><div class="section-head"><div><h2>What we do.</h2><p>Marketing and advertising built to make your brand easier to notice, remember, and choose.</p></div></div><div class="grid3" id="servicesGrid"></div></div></section>
+<section id="services"><div class="container"><div class="section-head"><div><h2>What we do.</h2><p>Marketing and advertising built to make your brand easier to notice, remember, and choose.</p></div></div><div class="grid3" id="servicesGrid">
+<a class="card service-card service-card-link" href="./brand-strategy.html"><div class="icon">✦</div><h3>Brand Strategy</h3><p>Build a clear identity and message that people remember.</p><span class="service-link">Learn more →</span></a>
+<a class="card service-card service-card-link" href="./social-media.html"><div class="icon">◉</div><h3>Social Media</h3><p>Create content that gets attention and keeps your brand active.</p><span class="service-link">Learn more →</span></a>
+<a class="card service-card service-card-link" href="./advertising.html"><div class="icon">↗</div><h3>Advertising</h3><p>Turn strong creative into campaigns designed to drive action.</p><span class="service-link">Learn more →</span></a>
+<a class="card service-card service-card-link" href="./content-creation.html"><div class="icon">⌁</div><h3>Content Creation</h3><p>Photos, graphics, video, and copy made around your brand.</p><span class="service-link">Learn more →</span></a>
+<a class="card service-card service-card-link" href="./web-design.html"><div class="icon">◎</div><h3>Web Design</h3><p>Modern websites that look sharp and make it easy to take the next step.</p><span class="service-link">Learn more →</span></a>
+<a class="card service-card service-card-link" href="./growth-ideas.html"><div class="icon">⚡</div><h3>Growth Ideas</h3><p>Find practical ways to get more attention, leads, and customers.</p><span class="service-link">Learn more →</span></a>
+</div></div></section>
 <section id="bundles"><div class="container"><div class="section-head"><div><h2>Pick your bundle.</h2><p>Three simple options. Replace the placeholders in <strong>content.js</strong> with your real offers and prices.</p></div></div><div class="grid3" id="bundleGrid"></div></div></section>
 <section id="about"><div class="container about"><div class="card"><div class="eyebrow">ABOUT</div><h2 style="font-size:40px;margin:18px 0">Built for brands that want to be seen.</h2><p class="muted" id="aboutText">Visionering is built around one simple idea: good marketing should get noticed and actually move people to action.</p></div><div class="card"><div class="eyebrow">OUR PROCESS</div><div class="process" id="processGrid"></div></div></div></section>
 <section id="contact"><div class="container"><div class="cta"><div class="eyebrow">LET'S BUILD</div><h2 style="position:relative;font-size:clamp(38px,5vw,62px);letter-spacing:-.04em;margin:16px 0 10px" id="contactTitle">Ready to make some noise?</h2><p class="muted" style="position:relative" id="contactText">Tell us what you are building and what you want to accomplish.</p><div class="actions"><a class="btn primary" id="contactEmail" href="#">Email Visionering</a></div></div></div></section>
@@ -82,13 +89,12 @@ document.addEventListener('DOMContentLoaded',()=>{
  set('navBrand',c.company);set('footerBrand',c.company);set('tagline',c.tagline);set('category',c.category);set('heroText',c.heroText);set('aboutText',c.about||'');set('contactTitle',c.contactTitle||'Ready to make some noise?');set('contactText',c.contactText||'');
  const hero=document.getElementById('heroHeading'); if(hero) hero.innerHTML=`${c.heroTitle||'Make your brand'} <span class="gradient">${c.heroHighlight||'impossible to ignore.'}</span>`;
  const mail=`mailto:${c.email||''}`;['heroEmail','contactEmail'].forEach(id=>{const e=document.getElementById(id);if(e)e.href=mail});
- const s=document.getElementById('servicesGrid');(c.services||[]).forEach(x=>{
-   const d=document.createElement('a');
-   d.className='card service-card service-card-link';
+ const s=document.getElementById('servicesGrid');(c.services||[]).forEach((x,i)=>{
+   const d=s && s.children[i];
+   if(!d)return;
    d.href=x.page||'#';
    d.setAttribute('aria-label',`Open ${x.title||'service'} page`);
    d.innerHTML=`<div class="icon">${x.icon||'✦'}</div><h3>${x.title||''}</h3><p>${x.text||''}</p><span class="service-link">Learn more →</span>`;
-   s.appendChild(d);
  });
  const b=document.getElementById('bundleGrid');(c.bundles||[]).forEach(x=>{const d=document.createElement('article');d.className=`card bundle${x.featured?' featured':''}`;d.innerHTML=`${x.featured?'<div class="tag">MOST POPULAR</div>':''}<div class="muted">${x.name||''}</div><h3>${x.title||''}</h3><div class="price">${x.price||''}</div><p class="muted">${x.description||''}</p><ul>${(x.items||[]).map(i=>`<li>${i}</li>`).join('')}</ul><a class="btn primary" href="#contact">Choose Bundle</a>`;b.appendChild(d)});
  const p=document.getElementById('processGrid');(c.process||[]).forEach((x,i)=>{const d=document.createElement('div');d.className='step';d.innerHTML=`<div class="num">0${i+1}</div><div><h3>${x.title||''}</h3><p class="muted">${x.text||''}</p></div>`;p.appendChild(d)});
