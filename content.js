@@ -36,26 +36,26 @@ const SITE_CONTENT = {
   bundles: [
     {
       name: "BUNDLE 01",
-      title: "Your First Bundle",
+      title: "Starter",
       price: "$150",
-      description: "Replace this with your first package description.",
-      items: ["Service or deliverable #1", "Service or deliverable #2", "Service or deliverable #3"],
+      description: "A simple starting point to build your brand and get your marketing moving.",
+      items: ["Brand profile setup", "5 social media posts", "Basic marketing ideas"],
       featured: false
     },
     {
       name: "BUNDLE 02",
-      title: "Your Second Bundle",
+      title: "Growth",
       price: "$300",
-      description: "Replace this with your second package description.",
-      items: ["Service or deliverable #1", "Service or deliverable #2", "Service or deliverable #3"],
+      description: "More content and support to help your brand grow.",
+      items: ["Everything in Starter", "10 social media posts", "Custom graphics", "Basic ad campaign setup"],
       featured: true
     },
     {
       name: "BUNDLE 03",
-      title: "Your Third Bundle",
+      title: "Premium",
       price: "$500",
-      description: "Replace this with your third package description.",
-      items: ["Service or deliverable #1", "Service or deliverable #2", "Service or deliverable #3"],
+      description: "A complete package for ongoing content, advertising, and growth planning.",
+      items: ["Everything in Growth", "20 social media posts", "Website improvements", "Advertising + campaign planning", "Monthly growth ideas"],
       featured: false
     }
   ],
