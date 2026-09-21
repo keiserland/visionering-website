@@ -37,7 +37,7 @@ const SITE_CONTENT = {
     {
       name: "BUNDLE 01",
       title: "Your First Bundle",
-      price: "$---",
+      price: "$150",
       description: "Replace this with your first package description.",
       items: ["Service or deliverable #1", "Service or deliverable #2", "Service or deliverable #3"],
       featured: false
@@ -45,7 +45,7 @@ const SITE_CONTENT = {
     {
       name: "BUNDLE 02",
       title: "Your Second Bundle",
-      price: "$---",
+      price: "$300",
       description: "Replace this with your second package description.",
       items: ["Service or deliverable #1", "Service or deliverable #2", "Service or deliverable #3"],
       featured: true
@@ -53,7 +53,7 @@ const SITE_CONTENT = {
     {
       name: "BUNDLE 03",
       title: "Your Third Bundle",
-      price: "$---",
+      price: "$500",
       description: "Replace this with your third package description.",
       items: ["Service or deliverable #1", "Service or deliverable #2", "Service or deliverable #3"],
       featured: false
