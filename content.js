@@ -60,6 +60,13 @@ const SITE_CONTENT = {
     }
   ],
 
+  merchAddOn: {
+    title: "Merch Add-On",
+    price: "$175",
+    description: "Add custom merch design and basic merch setup to your Visionering package.",
+    items: ["Custom merch design", "Merch graphics", "Basic merch setup"]
+  },
+
   about: "Visionering is built around one simple idea: good marketing should get noticed and actually move people to action. Our goal is to help brands look better, communicate clearly, and grow.",
 
   process: [
