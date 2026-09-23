@@ -35,7 +35,7 @@ const SITE_CONTENT = {
 
   bundles: [
     {
-      name: "BUNDLE 01",
+      name: "1",
       title: "Starter",
       price: "$150",
       description: "A simple starting point to build your brand and get your marketing moving.",
@@ -43,7 +43,7 @@ const SITE_CONTENT = {
       featured: false
     },
     {
-      name: "BUNDLE 02",
+      name: "2",
       title: "Growth",
       price: "$300",
       description: "More content and support to help your brand grow.",
@@ -51,7 +51,7 @@ const SITE_CONTENT = {
       featured: true
     },
     {
-      name: "BUNDLE 03",
+      name: "3",
       title: "Premium",
       price: "$500",
       description: "A complete package for ongoing content, advertising, and growth planning.",
