@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Visionering | Checkout</title>
+<link rel="icon" href="logo.png?v=1004">
+<link rel="stylesheet" href="service.css">
+<style>
+.checkout-wrap{max-width:900px;margin:0 auto}
+.checkout-card{padding:34px;border-radius:28px;border:1px solid var(--line);background:linear-gradient(150deg,rgba(25,53,95,.78),rgba(12,22,46,.86));box-shadow:0 28px 80px rgba(0,0,0,.28)}
+.checkout-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.field{display:grid;gap:8px;margin-bottom:16px}
+.field label{font-size:13px;font-weight:900;color:#dbe7f5}
+.field input,.field select,.field textarea{width:100%;padding:13px 14px;border:1px solid var(--line);border-radius:13px;background:rgba(255,255,255,.045);color:var(--text);font:inherit}
+.field textarea{min-height:110px;resize:vertical}
+.summary{padding:24px;border-radius:22px;border:1px solid var(--line);background:rgba(255,255,255,.035)}
+.summary-row{display:flex;justify-content:space-between;gap:16px;padding:10px 0;border-bottom:1px solid var(--line)}
+.summary-row:last-child{border-bottom:0}
+.total{font-size:25px;font-weight:950;margin-top:8px}
+.discount-note{margin-top:10px;color:#69eaff;font-size:13px;font-weight:800}
+.status{margin-top:14px;color:var(--muted);font-size:14px}
+.nav-actions{display:flex;gap:10px;align-items:center}
+@media(max-width:850px){.checkout-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav class="nav"><div class="container nav-inner">
+<a class="brand" href="index.html"><img src="logo.png?v=1004" alt="Visionering logo"><span>VISIONERING</span></a>
+<div class="nav-actions"><a class="home" href="index.html">← Back to Home</a></div>
+</div></nav>
+
+<main>
+<div class="container checkout-wrap">
+<div class="eyebrow">CHECKOUT</div>
+<h1>Choose your <span class="gradient">Visionering package.</span></h1>
+<p class="lead">Review your package and send your order request. Payment details are handled after the order is confirmed.</p>
+
+<div class="checkout-card">
+<div class="checkout-grid">
+<div>
+<div class="field">
+<label for="bundle">Package</label>
+<select id="bundle">
+<option value="Starter">Starter — $150</option>
+<option value="Growth">Growth — $300</option>
+<option value="Premium">Premium — $500</option>
+</select>
+</div>
+
+<div class="field">
+<label for="promo">Discount code</label>
+<input id="promo" placeholder="Enter code">
+</div>
+
+<div class="field">
+<label for="name">Name</label>
+<input id="name" required placeholder="Your name">
+</div>
+
+<div class="field">
+<label for="email">Email</label>
+<input id="email" type="email" required placeholder="you@example.com">
+</div>
+
+<div class="field">
+<label for="notes">Notes</label>
+<textarea id="notes" placeholder="Anything you want us to know about your project?"></textarea>
+</div>
+</div>
+
+<div class="summary">
+<h2>Order Summary</h2>
+<div class="summary-row"><span>Package</span><strong id="summaryBundle">Starter</strong></div>
+<div class="summary-row"><span>Regular price</span><strong id="summaryRegular">$150</strong></div>
+<div class="summary-row"><span>Discount</span><strong id="summaryDiscount">$0</strong></div>
+<div class="summary-row total"><span>Total</span><strong id="summaryTotal">$150</strong></div>
+<div id="discountNote" class="discount-note"></div>
+<p id="status" class="status"></p>
+<button class="btn primary" id="sendOrder" type="button" style="width:100%;margin-top:20px">Send Order Request</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+
+<footer><div class="container">VISIONERING · SEE IT. BUILD IT. GROW IT.</div></footer>
+
+<script>
+const bundles={
+  Starter:{regular:150,discount:75},
+  Growth:{regular:300,discount:150},
+  Premium:{regular:500,discount:200}
+};
+const promoCode='START UP';
+
+const bundleEl=document.getElementById('bundle');
+const promoEl=document.getElementById('promo');
+const nameEl=document.getElementById('name');
+const emailEl=document.getElementById('email');
+const notesEl=document.getElementById('notes');
+const summaryBundle=document.getElementById('summaryBundle');
+const summaryRegular=document.getElementById('summaryRegular');
+const summaryDiscount=document.getElementById('summaryDiscount');
+const summaryTotal=document.getElementById('summaryTotal');
+const discountNote=document.getElementById('discountNote');
+const statusEl=document.getElementById('status');
+
+const params=new URLSearchParams(location.search);
+const requested=params.get('bundle');
+if(requested && bundles[requested]) bundleEl.value=requested;
+
+function updateSummary(){
+  const b=bundles[bundleEl.value];
+  const active=promoEl.value.trim().toUpperCase()===promoCode;
+  const total=active?b.discount:b.regular;
+  const saved=b.regular-total;
+  summaryBundle.textContent=bundleEl.value;
+  summaryRegular.textContent='$'+b.regular;
+  summaryDiscount.textContent=saved?'-$'+saved:'$0';
+  summaryTotal.textContent='$'+total;
+  discountNote.textContent=active?'START UP applied.':'';
+}
+bundleEl.addEventListener('change',updateSummary);
+promoEl.addEventListener('input',updateSummary);
+updateSummary();
+
+document.getElementById('sendOrder').addEventListener('click',()=>{
+  const name=nameEl.value.trim();
+  const email=emailEl.value.trim();
+  if(!name || !email){
+    statusEl.textContent='Please enter your name and email first.';
+    return;
+  }
+  const b=bundles[bundleEl.value];
+  const active=promoEl.value.trim().toUpperCase()===promoCode;
+  const total=active?b.discount:b.regular;
+  const subject=encodeURIComponent('Visionering Order Request — '+bundleEl.value);
+  const body=encodeURIComponent(
+    'Name: '+name+'\n'+
+    'Customer email: '+email+'\n'+
+    'Package: '+bundleEl.value+'\n'+
+    'Discount code: '+(active?'START UP':'None')+'\n'+
+    'Total: $'+total+'\n'+
+    'Notes: '+(notesEl.value.trim()||'None')
+  );
+  statusEl.textContent='Opening your email app...';
+  window.location.href='mailto:visionearingmarketing@gmail.com?subject='+subject+'&body='+body;
+});
+</script>
+</body>
+</html>
