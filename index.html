@@ -110,7 +110,7 @@ const renderBundles=(discounted=false)=>{
     const d=document.createElement('article');
     d.className=`card bundle${x.featured?' featured':''}`;
     const shownPrice=prices[x.title]||x.price||'';
-    d.innerHTML=`<div class="tag-row">${x.featured?'<div class="tag">MOST POPULAR</div>':''}</div><h3>${x.title||''}</h3><div class="price">${shownPrice}</div>${discounted?'<div class="discounted-label">START UP PRICE</div>':''}<p class="muted">${x.description||''}</p><ul>${(x.items||[]).map(i=>`<li>${i}</li>`).join('')}</ul><a class="btn primary" href="#contact">Choose Bundle</a>`;
+    d.innerHTML=`<div class="tag-row">${x.featured?'<div class="tag">MOST POPULAR</div>':''}</div><h3>${x.title||''}</h3><div class="price">${shownPrice}</div>${discounted?'<div class="discounted-label">START UP PRICE</div>':''}<p class="muted">${x.description||''}</p><ul>${(x.items||[]).map(i=>`<li>${i}</li>`).join('')}</ul><a class="btn primary" href="checkout.html?bundle=${encodeURIComponent(x.title||'')}">Choose Bundle</a>`;
     b.appendChild(d);
   });
 };
