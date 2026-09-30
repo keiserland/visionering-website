@@ -33,6 +33,13 @@ const SITE_CONTENT = {
     { icon: "⚡", title: "Growth Ideas", text: "Find practical ways to get more attention, leads, and customers.", page: "growth-ideas.html" }
   ],
 
+  discountCode: "START UP",
+  discountPrices: {
+    Starter: "$75",
+    Growth: "$150",
+    Premium: "$200"
+  },
+
   bundles: [
     {
       name: "1",
